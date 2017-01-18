@@ -1,0 +1,255 @@
+/**
+ * @NApiVersion 2.x
+ * @NScriptType UserEventScript
+ * @NModuleScope SameAccount
+ * author: ${USER}
+ * Date: ${DATE}
+ * Version: 1.0
+ */#if($beforeLoad && $beforeSubmit && $afterSubmit)#end
+ #set($modules = '')
+ #set($comments = '')
+ #set($params = '')
+ #if($N != '')
+    #set($modules = $modules + "'N',")
+    #set($comments = $comments + "* @param {N} N
+")
+    #set($params = $params + "N, ")
+ #end
+ #if($auth != '')
+    #set($modules = $modules + "'N/auth',")
+    #set($comments = $comments + "* @param {auth} auth
+")
+    #set($params = $params + "auth, ")
+ #end
+ #if($config != '')
+    #set($modules = $modules + "'N/config',")
+    #set($comments = $comments + "* @param {config} config
+")
+    #set($params = $params + "config, ")
+ #end
+ #if($crypto != '')
+    #set($modules = $modules + "'N/crypto',")
+    #set($comments = $comments + "* @param {crypto} crypto
+")
+    #set($params = $params + "crypto, ")
+ #end
+ #if($currency != '')
+    #set($modules = $modules + "'N/currency',")
+    #set($comments = $comments + "* @param {currency} currency
+")
+    #set($params = $params + "currency, ")
+ #end
+ #if($email != '')
+    #set($modules = $modules + "'N/email',")
+    #set($comments = $comments + "* @param {email} email
+")
+    #set($params = $params + "email, ")
+ #end
+ #if($encode != '')
+    #set($modules = $modules + "'N/encode',")
+    #set($comments = $comments + "* @param {encode} encode
+")
+    #set($params = $params + "encode, ")
+ #end
+ #if($error != '')
+    #set($modules = $modules + "'N/error',")
+    #set($comments = $comments + "* @param {error} error
+")
+    #set($params = $params + "error, ")
+ #end
+ #if($file != '')
+    #set($modules = $modules + "'N/file',")
+    #set($comments = $comments + "* @param {file} file
+")
+    #set($params = $params + "file, ")
+ #end
+ #if($format != '')
+    #set($modules = $modules + "'N/format',")
+    #set($comments = $comments + "* @param {format} format
+")
+    #set($params = $params + "format, ")
+ #end
+ #if($http != '')
+    #set($modules = $modules + "'N/http',")
+    #set($comments = $comments + "* @param {http} http
+")
+    #set($params = $params + "http, ")
+ #end
+ #if($https != '')
+    #set($modules = $modules + "'N/https',")
+    #set($comments = $comments + "* @param {https} https
+")
+    #set($params = $params + "https, ")
+ #end
+ #if($plugin != '')
+    #set($modules = $modules + "'N/plugin',")
+    #set($comments = $comments + "* @param {plugin} plugin
+")
+    #set($params = $params + "plugin, ")
+ #end
+ #if($portlet != '')
+    #set($modules = $modules + "'N/portlet',")
+    #set($comments = $comments + "* @param {portlet} portlet
+")
+    #set($params = $params + "portlet, ")
+ #end
+ #if($record != '')
+    #set($modules = $modules + "'N/record',")
+    #set($comments = $comments + "* @param {record} record
+")
+    #set($params = $params + "record, ")
+ #end
+ #if($redirect != '')
+    #set($modules = $modules + "'N/redirect',")
+    #set($comments = $comments + "* @param {redirect} redirect
+")
+    #set($params = $params + "redirect, ")
+ #end
+ #if($render != '')
+    #set($modules = $modules + "'N/render',")
+    #set($comments = $comments + "* @param {render} render
+")
+    #set($params = $params + "render, ")
+ #end
+ #if($runtime != '')
+    #set($modules = $modules + "'N/runtime',")
+    #set($comments = $comments + "* @param {runtime} runtime
+")
+    #set($params = $params + "runtime, ")
+ #end
+ #if($search != '')
+    #set($modules = $modules + "'N/search',")
+    #set($comments = $comments + "* @param {search} search
+")
+    #set($params = $params + "search, ")
+ #end
+ #if($sso != '')
+    #set($modules = $modules + "'N/sso',")
+    #set($comments = $comments + "* @param {sso} sso
+")
+    #set($params = $params + "sso, ")
+ #end
+ #if($task != '')
+    #set($modules = $modules + "'N/task',")
+    #set($comments = $comments + "* @param {task} task
+")
+    #set($params = $params + "task, ")
+ #end
+ #if($transaction != '')
+    #set($modules = $modules + "'N/transaction',")
+    #set($comments = $comments + "* @param {transaction} transaction
+")
+    #set($params = $params + "transaction, ")
+ #end
+ #if($ui != ''
+    )#set($modules = $modules + "'N/ui',")
+    #set($comments = $comments + "* @param {ui} ui
+")
+    #set($params = $params + "ui, ")
+ #end
+ #if($dialog != '')
+    #set($modules = $modules + "'N/ui/dialog',")
+    #set($comments = $comments + "* @param {dialog} dialog
+")
+    #set($params = $params + "dialog, ")
+ #end
+ #if($message != '')
+    #set($modules = $modules + "'N/ui/message',")
+    #set($comments = $comments + "* @param {message} message
+")
+    #set($params = $params + "message, ")
+ #end
+ #if($serverWidget != '')
+    #set($modules = $modules + "'N/ui/serverWidget',")
+    #set($comments = $comments + "* @param {serverWidget} serverWidget
+")
+    #set($params = $params + "serverWidget, ")
+ #end
+ #if($url != '')
+    #set($modules = $modules + "'N/url',")
+    #set($comments = $comments + "* @param {url} url
+")
+    #set($params = $params + "url, ")
+ #end
+ #if($workflow != '')
+    #set($modules = $modules + "'N/workflow',")
+    #set($comments = $comments + "* @param {workflow} workflow
+")
+    #set($params = $params + "workflow, ")
+ #end
+ #if($xml != '')
+    #set($modules = $modules + "'N/xml'")
+    #set($comments = $comments + "* @param {xml} xml
+")
+    #set($params = $params + "xml, ")
+ #end
+
+ #if($modules.length() > 0)
+    #set ($stringLength = $modules.length() - 1)
+    #set ($modules = $modules.substring(0, $stringLength))
+ #end
+ #if($comments.length() > 0)
+    #set ($commentsLength = $comments.length() - 1)
+    #set ($comments = $comments.substring(0, $commentsLength))
+ #end
+ #if($params.length() > 0)
+    #set ($paramsLength = $params.length() - 2)
+    #set ($params = $params.substring(0, $paramsLength))
+ #end
+
+define([$modules],
+
+ /**
+$comments
+*/
+    function($params) {
+
+     #if($beforeLoad != '')
+        /**
+         * Function definition to be triggered before record is loaded.
+         * @param {Object} context
+         * @param {Record} context.newRecord - New record
+         * @param {string} context.type - Trigger type
+         * @param {Form} context.form - Current form
+         * @Since 2015.2
+         */
+        function beforeLoad(context) {
+
+        }
+
+    #end
+    #if($beforeSubmit != '')
+        /**
+         * Function definition to be triggered before record is loaded.
+         * @param {Object} context
+         * @param {Record} context.newRecord - New record
+         * @param {Record} context.oldRecord - Old record
+         * @param {string} context.type - Trigger type
+         * @Since 2015.2
+         */
+        function beforeSubmit(context) {
+
+        }
+
+    #end
+    #if($afterSubmit != '')
+        /**
+         * Function definition to be triggered before record is loaded.
+         * @param {Object} context
+         * @param {Record} context.newRecord - New record
+         * @param {Record} context.oldRecord - Old record
+         * @param {string} context.type - Trigger type
+         * @Since 2015.2
+         */
+        function afterSubmit(context) {
+
+        }
+
+    #end
+        return {
+            beforeLoad: #if($beforeLoad != '')beforeLoad#else null #end,
+            beforeSubmit: #if($beforeSubmit != '')beforeSubmit#else null #end,
+            afterSubmit: #if($afterSubmit != '')afterSubmit#else null #end
+        }
+    }
+);
