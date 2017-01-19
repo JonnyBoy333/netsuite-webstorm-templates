@@ -1,11 +1,11 @@
 /**
  * @NApiVersion 2.x
- * @NScriptType MapReduceScript
+ * @NScriptType Restlet
  * @NModuleScope SameAccount
  * author: ${USER}
  * Date: ${DATE}
  * Version: 1.0
- */
+ */#if($GET && $PUT && $POST && $DELETE)#end
  #set($modules = '')
  #set($comments = '')
  #set($params = '')
@@ -204,50 +204,61 @@ $comments
 */
     function($params) {
 
+     #if($GET != '')
         /**
-         * Marks the beginning of the Map/Reduce process and generates input data.
-         * @typedef {Object} ObjectRef
-         * @property {number} id - Internal ID of the record instance
-         * @property {string} type - Record type id
-         * @return {Array|Object|Search|RecordRef} inputSummary
+         * Function called upon sending a GET request to the RESTlet.
+         * @param {Object} requestParams - Parameters from HTTP request URL; parameters will be passed into function as an Object (for all supported content types)
+         * @returns {string | Object} HTTP response body; return string when request Content-Type is 'text/plain'; return Object when request Content-Type is 'application/json'
          * @since 2015.1
          */
-        function getInputData() {
+        function doGet(requestParams) {
 
         }
 
+    #end
+    #if($PUT != '')
         /**
-         * Executes when the map entry point is triggered and applies to each key/value pair.
-         * @param {MapSummary} context - Data collection containing the key/value pairs to process through the map stage
-         * @since 2015.1
+         * Function called upon sending a PUT request to the RESTlet.
+         * @param {string | Object} requestBody - The HTTP request body; request body will be passed into function as a string when request Content-Type is 'text/plain'
+         * or parsed into an Object when request Content-Type is 'application/json' (in which case the body must be a valid JSON)
+         * @returns {string | Object} HTTP response body; return string when request Content-Type is 'text/plain'; return Object when request Content-Type is 'application/json'
+         * @since 2015.2
          */
-        function map(context) {
+        function doPut(requestBody) {
 
         }
 
+    #end
+    #if($POST != '')
         /**
-         * Executes when the reduce entry point is triggered and applies to each group.
-         * @param {ReduceSummary} context - Data collection containing the groups to process through the reduce stage
-         * @since 2015.1
+         * Function called upon sending a POST request to the RESTlet.
+         * @param {string | Object} requestBody - The HTTP request body; request body will be passed into function as a string when request Content-Type is 'text/plain'
+         * or parsed into an Object when request Content-Type is 'application/json' (in which case the body must be a valid JSON)
+         * @returns {string | Object} HTTP response body; return string when request Content-Type is 'text/plain'; return Object when request Content-Type is 'application/json'
+         * @since 2015.2
          */
-        function reduce(context) {
+        function doPost(requestBody) {
 
         }
 
+    #end
+    #if($DELETE != '')
         /**
-         * Executes when the summarize entry point is triggered and applies to the result set.
-         * @param {Summary} summary - Holds statistics regarding the execution of a map/reduce script
-         * @since 2015.1
+         * Function called upon sending a DELETE request to the RESTlet.
+         * @param {Object} requestParams - Parameters from HTTP request URL; parameters will be passed into function as an Object (for all supported content types)
+         * @returns {string | Object} HTTP response body; return string when request Content-Type is 'text/plain'; return Object when request Content-Type is 'application/json'
+         * @since 2015.2
          */
-        function summarize(summary) {
+        function doDelete(requestParams) {
 
         }
 
+    #end
         return {
-            getInputData: getInputData,
-            map: map,
-            reduce: reduce,
-            summarize: summarize
+            'get': #if($GET != '')doGet#else null #end,
+            put: #if($PUT != '')doPut#else null #end,
+            post: #if($POST != '')doPost#else null #end,
+            'delete': #if($DELETE != '')doDelete#else null #end
         }
     }
 );
